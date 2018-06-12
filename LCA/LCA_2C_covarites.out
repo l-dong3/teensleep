@@ -1,0 +1,1103 @@
+Mplus VERSION 8.1 (Mac)
+MUTHEN & MUTHEN
+06/12/2018   1:42 PM
+
+INPUT INSTRUCTIONS
+
+
+    TITLE:	this is an example of a LCA with
+    	continuous latent class indicators using
+    	user-specified starting values without
+    	random starts
+
+    DATA:	FILE = sleep_health_6dims.csv;
+
+    VARIABLE:	
+    	NAMES ARE ID duration age sex
+    		      timing quality alert	
+    		      efficiency regular;
+    	
+    	USEVARIABLES ARE duration timing sex age
+    	 	          quality alert	
+    			   efficiency regular;
+    	CLASSES = c (2);
+    	MISSING = ALL (-999);
+    	IDVARIABLE = ID;
+
+    ANALYSIS:	TYPE = MIXTURE;
+    		!STARTS = 100 10;
+
+    MODEL:
+    %OVERALL%
+    	c ON age sex;
+
+    OUTPUT:	TECH1 TECH8;
+
+    SAVEDATA:
+    		FILE is class_2c.txt;
+    		SAVE = cprob;
+    PLOT:
+    		TYPE = plot3;
+    		SERIES = duration timing
+    	 	         quality alert	
+    			  efficiency regular(*);
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables within class:  DURATION
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables within class:  TIMING
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables within class:  QUALITY
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables within class:  ALERT
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables within class:  EFFICIENCY
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables within class:  REGULAR
+*** WARNING in MODEL command
+  At least one variable is uncorrelated with all other variables within class.
+  Check that this is what is intended.
+*** WARNING in PLOT command
+  Note that only the first 8 characters of variable names are used in plots.
+  If variable names are not unique within the first 8 characters, problems
+  may occur.
+*** WARNING
+  Data set contains cases with missing on all variables except
+  x-variables.  These cases were not included in the analysis.
+  Number of cases with missing on all variables except x-variables:  8
+  10 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+this is an example of a LCA with
+continuous latent class indicators using
+user-specified starting values without
+random starts
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         177
+
+Number of dependent variables                                    6
+Number of independent variables                                  2
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Continuous
+   DURATION    TIMING      QUALITY     ALERT       EFFICIENCY  REGULAR
+
+Observed independent variables
+   SEX         AGE
+
+Categorical latent variables
+   C
+
+Variables with special functions
+
+  ID variable           ID
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                         20
+  Number of final stage optimizations                            4
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+
+Input data file(s)
+  sleep_health_6dims.csv
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             6
+     Number of y missing data patterns           6
+     Number of u missing data patterns           0
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              DURATION      TIMING        QUALITY       ALERT         EFFICIEN
+              ________      ________      ________      ________      ________
+ DURATION       0.949
+ TIMING         0.949         0.949
+ QUALITY        0.904         0.904         0.955
+ ALERT          0.932         0.932         0.955         0.983
+ EFFICIEN       0.949         0.949         0.904         0.932         0.949
+ REGULAR        0.904         0.904         0.864         0.887         0.904
+ SEX            0.949         0.949         0.955         0.983         0.949
+ AGE            0.949         0.949         0.955         0.983         0.949
+
+
+           Covariance Coverage
+              REGULAR       SEX           AGE
+              ________      ________      ________
+ REGULAR        0.904
+ SEX            0.904         1.000
+ AGE            0.904         1.000         1.000
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     DURATION            468.158      -0.190     291.430    0.60%     414.290    455.000    475.915
+             168.000    3456.687      -0.175     601.670    0.60%     486.500    517.500
+     TIMING               27.426       0.847      25.880    0.60%      26.800     27.210     27.400
+             168.000       0.553       1.822      30.270    0.60%      27.570     27.920
+     QUALITY               1.462       0.079       0.000    4.73%       1.000      1.000      1.000
+             169.000       0.426      -0.213       3.000    4.14%       2.000      2.000
+     ALERT                 6.161       0.404       0.000   11.49%       2.000      5.000      6.000
+             174.000      17.905      -0.488      19.000    0.57%       7.000     10.000
+     EFFICIENCY           90.336      -1.873      54.740    0.60%      86.090     90.790     92.135
+             168.000      45.181       4.919      99.650    0.60%      93.400     95.360
+     REGULAR               1.856       0.733       0.000    0.62%       0.697      1.442      1.695
+             160.000       1.534       0.288       5.860    0.62%       1.983      2.750
+     SEX                   0.582      -0.332       0.000   41.81%       0.000      0.000      1.000
+             177.000       0.243      -1.890       1.000   58.19%       1.000      1.000
+     AGE                  14.763      -0.260      10.000    1.13%      13.000     14.000     15.000
+             177.000       3.356      -0.459      18.000    6.21%      15.000     16.000
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -2547.773  107446           12
+           -2547.773  127215           9
+           -2547.773  462953           7
+           -2547.773  573096           20
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       21
+
+Loglikelihood
+
+          H0 Value                       -2547.773
+          H0 Scaling Correction Factor      1.1748
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    5137.545
+          Bayesian (BIC)                  5204.244
+          Sample-Size Adjusted BIC        5137.741
+            (n* = (n + 2) / 24)
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1         18.62334          0.10522
+       2        158.37666          0.89478
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1         18.62334          0.10522
+       2        158.37666          0.89478
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1               17          0.09605
+       2              160          0.90395
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.928
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2
+
+    1   0.954    0.046
+    2   0.015    0.985
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2
+
+    1   0.871    0.129
+    2   0.005    0.995
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2
+
+    1      1.909    0.000
+    2     -5.309    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ Means
+    DURATION         391.105     13.203     29.623      0.000
+    TIMING            27.607      0.216    127.578      0.000
+    QUALITY            1.760      0.167     10.551      0.000
+    ALERT              7.098      1.230      5.768      0.000
+    EFFICIENCY        75.059      2.338     32.101      0.000
+    REGULAR            1.426      0.213      6.689      0.000
+
+ Variances
+    DURATION        2775.650    309.132      8.979      0.000
+    TIMING             0.549      0.081      6.751      0.000
+    QUALITY            0.415      0.042      9.849      0.000
+    ALERT             17.800      1.652     10.774      0.000
+    EFFICIENCY        18.408      3.573      5.152      0.000
+    REGULAR            1.514      0.178      8.501      0.000
+
+Latent Class 2
+
+ Means
+    DURATION         476.997      4.557    104.671      0.000
+    TIMING            27.406      0.061    449.458      0.000
+    QUALITY            1.425      0.054     26.421      0.000
+    ALERT              6.049      0.336     18.003      0.000
+    EFFICIENCY        92.089      0.373    246.628      0.000
+    REGULAR            1.901      0.106     18.021      0.000
+
+ Variances
+    DURATION        2775.650    309.132      8.979      0.000
+    TIMING             0.549      0.081      6.751      0.000
+    QUALITY            0.415      0.042      9.849      0.000
+    ALERT             17.800      1.652     10.774      0.000
+    EFFICIENCY        18.408      3.573      5.152      0.000
+    REGULAR            1.514      0.178      8.501      0.000
+
+Categorical Latent Variables
+
+ C#1        ON
+    AGE                0.242      0.140      1.726      0.084
+    SEX                0.013      0.590      0.022      0.982
+
+ Intercepts
+    C#1               -5.801      2.094     -2.771      0.006
+
+
+LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+Categorical Latent Variables
+
+ C#1      ON
+    AGE                1.274      0.179      1.533      0.125
+    SEX                1.013      0.598      0.022      0.982
+
+
+ALTERNATIVE PARAMETERIZATIONS FOR THE CATEGORICAL LATENT VARIABLE REGRESSION
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Parameterization using Reference Class 1
+
+ C#2      ON
+    SEX               -0.013      0.590     -0.022      0.982
+    AGE               -0.242      0.140     -1.726      0.084
+
+ Intercepts
+    C#2                5.801      2.094      2.771      0.006
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.101E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 1
+
+
+           NU
+              DURATION      TIMING        QUALITY       ALERT         EFFICIEN
+              ________      ________      ________      ________      ________
+                    1             2             3             4             5
+
+
+           NU
+              REGULAR       SEX           AGE
+              ________      ________      ________
+                    6             0             0
+
+
+           LAMBDA
+              SEX           AGE
+              ________      ________
+ DURATION           0             0
+ TIMING             0             0
+ QUALITY            0             0
+ ALERT              0             0
+ EFFICIEN           0             0
+ REGULAR            0             0
+ SEX                0             0
+ AGE                0             0
+
+
+           THETA
+              DURATION      TIMING        QUALITY       ALERT         EFFICIEN
+              ________      ________      ________      ________      ________
+ DURATION           7
+ TIMING             0             8
+ QUALITY            0             0             9
+ ALERT              0             0             0            10
+ EFFICIEN           0             0             0             0            11
+ REGULAR            0             0             0             0             0
+ SEX                0             0             0             0             0
+ AGE                0             0             0             0             0
+
+
+           THETA
+              REGULAR       SEX           AGE
+              ________      ________      ________
+ REGULAR           12
+ SEX                0             0
+ AGE                0             0             0
+
+
+           ALPHA
+              SEX           AGE
+              ________      ________
+                    0             0
+
+
+           BETA
+              SEX           AGE
+              ________      ________
+ SEX                0             0
+ AGE                0             0
+
+
+           PSI
+              SEX           AGE
+              ________      ________
+ SEX                0
+ AGE                0             0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 2
+
+
+           NU
+              DURATION      TIMING        QUALITY       ALERT         EFFICIEN
+              ________      ________      ________      ________      ________
+                   13            14            15            16            17
+
+
+           NU
+              REGULAR       SEX           AGE
+              ________      ________      ________
+                   18             0             0
+
+
+           LAMBDA
+              SEX           AGE
+              ________      ________
+ DURATION           0             0
+ TIMING             0             0
+ QUALITY            0             0
+ ALERT              0             0
+ EFFICIEN           0             0
+ REGULAR            0             0
+ SEX                0             0
+ AGE                0             0
+
+
+           THETA
+              DURATION      TIMING        QUALITY       ALERT         EFFICIEN
+              ________      ________      ________      ________      ________
+ DURATION           7
+ TIMING             0             8
+ QUALITY            0             0             9
+ ALERT              0             0             0            10
+ EFFICIEN           0             0             0             0            11
+ REGULAR            0             0             0             0             0
+ SEX                0             0             0             0             0
+ AGE                0             0             0             0             0
+
+
+           THETA
+              REGULAR       SEX           AGE
+              ________      ________      ________
+ REGULAR           12
+ SEX                0             0
+ AGE                0             0             0
+
+
+           ALPHA
+              SEX           AGE
+              ________      ________
+                    0             0
+
+
+           BETA
+              SEX           AGE
+              ________      ________
+ SEX                0             0
+ AGE                0             0
+
+
+           PSI
+              SEX           AGE
+              ________      ________
+ SEX                0
+ AGE                0             0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                   19             0
+
+
+           GAMMA(C)
+              SEX           AGE
+              ________      ________
+ C#1               20            21
+ C#2                0             0
+
+
+     STARTING VALUES FOR LATENT CLASS 1
+
+
+           NU
+              DURATION      TIMING        QUALITY       ALERT         EFFICIEN
+              ________      ________      ________      ________      ________
+              409.365        26.683         0.809         1.929        83.615
+
+
+           NU
+              REGULAR       SEX           AGE
+              ________      ________      ________
+                0.618         0.000         0.000
+
+
+           LAMBDA
+              SEX           AGE
+              ________      ________
+ DURATION       0.000         0.000
+ TIMING         0.000         0.000
+ QUALITY        0.000         0.000
+ ALERT          0.000         0.000
+ EFFICIEN       0.000         0.000
+ REGULAR        0.000         0.000
+ SEX            1.000         0.000
+ AGE            0.000         1.000
+
+
+           THETA
+              DURATION      TIMING        QUALITY       ALERT         EFFICIEN
+              ________      ________      ________      ________      ________
+ DURATION    1728.344
+ TIMING         0.000         0.276
+ QUALITY        0.000         0.000         0.213
+ ALERT          0.000         0.000         0.000         8.953
+ EFFICIEN       0.000         0.000         0.000         0.000        22.591
+ REGULAR        0.000         0.000         0.000         0.000         0.000
+ SEX            0.000         0.000         0.000         0.000         0.000
+ AGE            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              REGULAR       SEX           AGE
+              ________      ________      ________
+ REGULAR        0.767
+ SEX            0.000         0.000
+ AGE            0.000         0.000         0.000
+
+
+           ALPHA
+              SEX           AGE
+              ________      ________
+                0.000         0.000
+
+
+           BETA
+              SEX           AGE
+              ________      ________
+ SEX            0.000         0.000
+ AGE            0.000         0.000
+
+
+           PSI
+              SEX           AGE
+              ________      ________
+ SEX            0.122
+ AGE            0.000         1.678
+
+
+     STARTING VALUES FOR LATENT CLASS 2
+
+
+           NU
+              DURATION      TIMING        QUALITY       ALERT         EFFICIEN
+              ________      ________      ________      ________      ________
+              526.952        28.170         2.114        10.392        97.058
+
+
+           NU
+              REGULAR       SEX           AGE
+              ________      ________      ________
+                3.094         0.000         0.000
+
+
+           LAMBDA
+              SEX           AGE
+              ________      ________
+ DURATION       0.000         0.000
+ TIMING         0.000         0.000
+ QUALITY        0.000         0.000
+ ALERT          0.000         0.000
+ EFFICIEN       0.000         0.000
+ REGULAR        0.000         0.000
+ SEX            1.000         0.000
+ AGE            0.000         1.000
+
+
+           THETA
+              DURATION      TIMING        QUALITY       ALERT         EFFICIEN
+              ________      ________      ________      ________      ________
+ DURATION    1728.344
+ TIMING         0.000         0.276
+ QUALITY        0.000         0.000         0.213
+ ALERT          0.000         0.000         0.000         8.953
+ EFFICIEN       0.000         0.000         0.000         0.000        22.591
+ REGULAR        0.000         0.000         0.000         0.000         0.000
+ SEX            0.000         0.000         0.000         0.000         0.000
+ AGE            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              REGULAR       SEX           AGE
+              ________      ________      ________
+ REGULAR        0.767
+ SEX            0.000         0.000
+ AGE            0.000         0.000         0.000
+
+
+           ALPHA
+              SEX           AGE
+              ________      ________
+                0.000         0.000
+
+
+           BETA
+              SEX           AGE
+              ________      ________
+ SEX            0.000         0.000
+ AGE            0.000         0.000
+
+
+           PSI
+              SEX           AGE
+              ________      ________
+ SEX            0.122
+ AGE            0.000         1.678
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                0.000         0.000
+
+
+           GAMMA(C)
+              SEX           AGE
+              ________      ________
+ C#1            0.000         0.000
+ C#2            0.000         0.000
+
+
+TECHNICAL 8 OUTPUT
+
+
+  INITIAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.31643911D+04    0.0000000    0.0000000     91.491    85.509    EM
+     2 -0.25979491D+04  566.4420661    0.1790051     94.934    82.066    EM
+     3 -0.25889078D+04    9.0412764    0.0034802     97.477    79.523    EM
+     4 -0.25835322D+04    5.3755919    0.0020764     98.980    78.020    EM
+     5 -0.25779074D+04    5.6247694    0.0021772     99.069    77.931    EM
+     6 -0.25716125D+04    6.2948669    0.0024419     98.101    78.899    EM
+     7 -0.25656394D+04    5.9731947    0.0023227     96.940    80.060    EM
+     8 -0.25610841D+04    4.5552065    0.0017755     96.180    80.820    EM
+     9 -0.25586401D+04    2.4439973    0.0009543     95.798    81.202    EM
+    10 -0.25577963D+04    0.8438116    0.0003298     95.647    81.353    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 1
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.62688157D+04    0.0000000    0.0000000    177.000     0.000    EM
+     2 -0.26218611D+04 3646.9546260    0.5817613    177.000     0.000    EM
+     3 -0.26210784D+04    0.7827046    0.0002985    177.000     0.000    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 2
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.61843709D+04    0.0000000    0.0000000      0.000   177.000    EM
+     2 -0.26219538D+04 3562.4171026    0.5760355      0.000   177.000    EM
+     3 -0.26209999D+04    0.9539005    0.0003638      0.000   177.000    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 3
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.56871521D+04    0.0000000    0.0000000      0.003   176.997    EM
+     2 -0.25872466D+04 3099.9055373    0.5450717      1.000   176.000    EM
+     3 -0.25797906D+04    7.4559869    0.0028818      1.066   175.934    EM
+     4 -0.25797880D+04    0.0025580    0.0000010      1.070   175.930    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 4
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.57939569D+04    0.0000000    0.0000000    177.000     0.000    EM
+     2 -0.26218794D+04 3172.0775092    0.5474803    177.000     0.000    EM
+     3 -0.26201395D+04    1.7399286    0.0006636    177.000     0.000    EM
+     4 -0.26192733D+04    0.8661874    0.0003306    177.000     0.000    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 5
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.89538938D+04    0.0000000    0.0000000     15.633   161.367    EM
+     2 -0.26009611D+04 6352.9326767    0.7095162      0.000   177.000    EM
+     3 -0.25967015D+04    4.2596419    0.0016377      0.000   177.000    EM
+     4 -0.25967015D+04    0.0000000    0.0000000      0.000   177.000    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 6
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.52796715D+04    0.0000000    0.0000000      0.000   177.000    EM
+     2 -0.26210327D+04 2658.6387415    0.5035614      0.000   177.000    EM
+     3 -0.26185314D+04    2.5013344    0.0009543      0.000   177.000    EM
+     4 -0.26177213D+04    0.8100942    0.0003094      0.000   177.000    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 7
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.50649009D+04    0.0000000    0.0000000     13.135   163.865    EM
+     2 -0.26045063D+04 2460.3946297    0.4857735      9.057   167.943    EM
+     3 -0.25910419D+04   13.4643826    0.0051696     10.231   166.769    EM
+     4 -0.25822884D+04    8.7535033    0.0033784     11.541   165.459    EM
+     5 -0.25718787D+04   10.4096990    0.0040312     13.787   163.213    EM
+     6 -0.25587820D+04   13.0967248    0.0050923     16.556   160.444    EM
+     7 -0.25492315D+04    9.5505029    0.0037324     18.036   158.964    EM
+     8 -0.25479248D+04    1.3066672    0.0005126     18.303   158.697    EM
+     9 -0.25477952D+04    0.1295609    0.0000508     18.454   158.546    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 8
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.75742737D+04    0.0000000    0.0000000      0.001   176.999    EM
+     2 -0.25967015D+04 4977.5722501    0.6571683      0.000   177.000    EM
+     3 -0.25967015D+04    0.0000000    0.0000000      0.000   177.000    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 9
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.68721218D+04    0.0000000    0.0000000     43.879   133.121    EM
+     2 -0.25699923D+04 4302.1294728    0.6260264     34.653   142.347    EM
+     3 -0.25584894D+04   11.5029260    0.0044759     31.236   145.764    EM
+     4 -0.25554751D+04    3.0142668    0.0011781     28.350   148.650    EM
+     5 -0.25536319D+04    1.8432131    0.0007213     25.611   151.389    EM
+     6 -0.25514593D+04    2.1725979    0.0008508     23.172   153.828    EM
+     7 -0.25494905D+04    1.9687875    0.0007716     21.327   155.673    EM
+     8 -0.25483863D+04    1.1042518    0.0004331     20.111   156.889    EM
+     9 -0.25479497D+04    0.4365445    0.0001713     19.398   157.602    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 10
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.79896393D+04    0.0000000    0.0000000     25.599   151.401    EM
+     2 -0.25892343D+04 5400.4049727    0.6759260     23.113   153.887    EM
+     3 -0.25653064D+04   23.9279387    0.0092413     22.685   154.315    EM
+     4 -0.25508352D+04   14.4712036    0.0056411     21.494   155.506    EM
+     5 -0.25485739D+04    2.2612347    0.0008865     20.290   156.710    EM
+     6 -0.25480071D+04    0.5668653    0.0002224     19.508   157.492    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 11
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.77119641D+04    0.0000000    0.0000000    171.295     5.705    EM
+     2 -0.25954504D+04 5116.5137445    0.6634514    171.335     5.665    EM
+     3 -0.25935612D+04    1.8891996    0.0007279    169.941     7.059    EM
+     4 -0.25904763D+04    3.0848079    0.0011894    166.915    10.085    EM
+     5 -0.25834663D+04    7.0100078    0.0027061    162.257    14.743    EM
+     6 -0.25760007D+04    7.4656001    0.0028898    157.957    19.043    EM
+     7 -0.25719194D+04    4.0813329    0.0015844    154.596    22.404    EM
+     8 -0.25698941D+04    2.0253292    0.0007875    151.884    25.116    EM
+     9 -0.25687333D+04    1.1607654    0.0004517    149.631    27.369    EM
+    10 -0.25679765D+04    0.7568377    0.0002946    147.666    29.334    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 12
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.56508759D+04    0.0000000    0.0000000      3.428   173.572    EM
+     2 -0.25753425D+04 3075.5333558    0.5442578      5.816   171.184    EM
+     3 -0.25652167D+04   10.1258515    0.0039318     10.136   166.864    EM
+     4 -0.25543117D+04   10.9049169    0.0042511     13.829   163.171    EM
+     5 -0.25495253D+04    4.7864925    0.0018739     16.041   160.959    EM
+     6 -0.25482343D+04    1.2909713    0.0005064     17.300   159.700    EM
+     7 -0.25478877D+04    0.3466048    0.0001360     17.958   159.042    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 13
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.78066310D+04    0.0000000    0.0000000    174.994     2.006    EM
+     2 -0.25923785D+04 5214.2525130    0.6679261    174.374     2.626    EM
+     3 -0.25906994D+04    1.6790912    0.0006477    172.818     4.182    EM
+     4 -0.25846950D+04    6.0043592    0.0023177    170.024     6.976    EM
+     5 -0.25802515D+04    4.4434785    0.0017192    167.964     9.036    EM
+     6 -0.25789169D+04    1.3346140    0.0005172    166.571    10.429    EM
+     7 -0.25783216D+04    0.5953445    0.0002309    165.480    11.520    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 14
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.54421481D+04    0.0000000    0.0000000     19.877   157.123    EM
+     2 -0.25944636D+04 2847.6845707    0.5232648     10.283   166.717    EM
+     3 -0.25796590D+04   14.8045431    0.0057062     16.816   160.184    EM
+     4 -0.25756611D+04    3.9979138    0.0015498     18.356   158.644    EM
+     5 -0.25744641D+04    1.1969568    0.0004647     19.203   157.797    EM
+     6 -0.25740441D+04    0.4200606    0.0001632     19.735   157.265    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 15
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.58400019D+04    0.0000000    0.0000000    159.562    17.438    EM
+     2 -0.25969046D+04 3243.0972789    0.5553247    162.287    14.713    EM
+     3 -0.25948434D+04    2.0612009    0.0007937    162.820    14.180    EM
+     4 -0.25944806D+04    0.3628494    0.0001398    163.005    13.995    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 16
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.53840100D+04    0.0000000    0.0000000    175.628     1.372    EM
+     2 -0.25948629D+04 2789.1470436    0.5180427    175.115     1.885    EM
+     3 -0.25901358D+04    4.7271546    0.0018217    172.458     4.542    EM
+     4 -0.25830348D+04    7.1009628    0.0027415    169.648     7.352    EM
+     5 -0.25793790D+04    3.6557501    0.0014153    167.246     9.754    EM
+     6 -0.25766649D+04    2.7141534    0.0010523    165.002    11.998    EM
+     7 -0.25750649D+04    1.5999651    0.0006209    163.524    13.476    EM
+     8 -0.25743511D+04    0.7137874    0.0002772    162.580    14.420    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 17
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.84634763D+04    0.0000000    0.0000000    177.000     0.000    EM
+     2 -0.25967015D+04 5866.7748108    0.6931874    177.000     0.000    EM
+     3 -0.25967015D+04    0.0000000    0.0000000    177.000     0.000    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 18
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.10773892D+05    0.0000000    0.0000000     43.764   133.236    EM
+     2 -0.26240271D+04 8149.8650175    0.7564458      0.000   177.000    EM
+     3 -0.25967015D+04   27.3256613    0.0104136      0.000   177.000    EM
+     4 -0.25967015D+04    0.0000000    0.0000000      0.000   177.000    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 19
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.75182596D+04    0.0000000    0.0000000    157.470    19.530    EM
+     2 -0.25985968D+04 4919.6628648    0.6543619    158.309    18.691    EM
+     3 -0.25953323D+04    3.2644542    0.0012562    157.917    19.083    EM
+     4 -0.25942000D+04    1.1322828    0.0004363    157.115    19.885    EM
+     5 -0.25933060D+04    0.8940351    0.0003446    156.257    20.743    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 20
+
+
+  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE      CLASS COUNTS    ALGORITHM
+     1 -0.99069962D+04    0.0000000    0.0000000     34.761   142.239    EM
+     2 -0.25931405D+04 7313.8556556    0.7382516     30.018   146.982    EM
+     3 -0.25785605D+04   14.5800216    0.0056225     26.068   150.932    EM
+     4 -0.25591812D+04   19.3793090    0.0075156     23.370   153.630    EM
+     5 -0.25499269D+04    9.2543204    0.0036161     21.511   155.489    EM
+     6 -0.25483564D+04    1.5704526    0.0006159     20.209   156.791    EM
+     7 -0.25479390D+04    0.4174251    0.0001638     19.448   157.552    EM
+
+
+  FINAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 7
+
+
+     9 -0.25477952D+04    0.1295609    0.0000508     18.454   158.546    EM
+    10 -0.25477765D+04    0.0187114    0.0000073     18.535   158.465    EM
+    11 -0.25477734D+04    0.0031008    0.0000012     18.578   158.422    EM
+    12 -0.25477728D+04    0.0005898    0.0000002     18.600   158.400    EM
+    13 -0.25477727D+04    0.0001257    0.0000000     18.612   158.388    EM
+    14 -0.25477727D+04    0.0000289    0.0000000     18.618   158.382    EM
+    15 -0.25477727D+04    0.0000069    0.0000000     18.621   158.379    EM
+    16 -0.25477727D+04    0.0000017    0.0000000     18.622   158.378    EM
+    17 -0.25477727D+04    0.0000004    0.0000000     18.623   158.377    EM
+    18 -0.25477727D+04    0.0000001    0.0000000     18.623   158.377    EM
+    19 -0.25477727D+04    0.0000000    0.0000000     18.623   158.377    EM
+    20 -0.25477727D+04    0.0000000    0.0000000     18.623   158.377    EM
+    21 -0.25477727D+04    0.0000000    0.0000000     18.623   158.377    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 12
+
+
+     7 -0.25478877D+04    0.3466048    0.0001360     17.958   159.042    EM
+     8 -0.25478010D+04    0.0866701    0.0000340     18.290   158.710    EM
+     9 -0.25477797D+04    0.0213307    0.0000084     18.457   158.543    EM
+    10 -0.25477744D+04    0.0052674    0.0000021     18.540   158.460    EM
+    11 -0.25477731D+04    0.0013078    0.0000005     18.582   158.418    EM
+    12 -0.25477728D+04    0.0003259    0.0000001     18.603   158.397    EM
+    13 -0.25477727D+04    0.0000814    0.0000000     18.613   158.387    EM
+    14 -0.25477727D+04    0.0000204    0.0000000     18.618   158.382    EM
+    15 -0.25477727D+04    0.0000051    0.0000000     18.621   158.379    EM
+    16 -0.25477727D+04    0.0000013    0.0000000     18.622   158.378    EM
+    17 -0.25477727D+04    0.0000003    0.0000000     18.623   158.377    EM
+    18 -0.25477727D+04    0.0000001    0.0000000     18.623   158.377    EM
+    19 -0.25477727D+04    0.0000000    0.0000000     18.623   158.377    EM
+    20 -0.25477727D+04    0.0000000    0.0000000     18.623   158.377    EM
+    21 -0.25477727D+04    0.0000000    0.0000000     18.623   158.377    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 20
+
+
+     7 -0.25479390D+04    0.4174251    0.0001638     19.448   157.552    EM
+     8 -0.25478164D+04    0.1226174    0.0000481     19.043   157.957    EM
+     9 -0.25477837D+04    0.0326276    0.0000128     18.835   158.165    EM
+    10 -0.25477754D+04    0.0082876    0.0000033     18.729   158.271    EM
+    11 -0.25477734D+04    0.0020794    0.0000008     18.677   158.323    EM
+    12 -0.25477728D+04    0.0005209    0.0000002     18.650   158.350    EM
+    13 -0.25477727D+04    0.0001305    0.0000001     18.637   158.363    EM
+    14 -0.25477727D+04    0.0000327    0.0000000     18.630   158.370    EM
+    15 -0.25477727D+04    0.0000082    0.0000000     18.627   158.373    EM
+    16 -0.25477727D+04    0.0000020    0.0000000     18.625   158.375    EM
+    17 -0.25477727D+04    0.0000005    0.0000000     18.624   158.376    EM
+    18 -0.25477727D+04    0.0000001    0.0000000     18.624   158.376    EM
+    19 -0.25477727D+04    0.0000000    0.0000000     18.624   158.376    EM
+    20 -0.25477727D+04    0.0000000    0.0000000     18.624   158.376    EM
+    21 -0.25477727D+04    0.0000000    0.0000000     18.624   158.376    EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 9
+
+
+     9 -0.25479497D+04    0.4365445    0.0001713     19.398   157.602    EM
+    10 -0.25478164D+04    0.1333279    0.0000523     19.015   157.985    EM
+    11 -0.25477829D+04    0.0334805    0.0000131     18.819   158.181    EM
+    12 -0.25477751D+04    0.0078211    0.0000031     18.721   158.279    EM
+    13 -0.25477733D+04    0.0018379    0.0000007     18.672   158.328    EM
+    14 -0.25477728D+04    0.0004422    0.0000002     18.648   158.352    EM
+    15 -0.25477727D+04    0.0001084    0.0000000     18.636   158.364    EM
+    16 -0.25477727D+04    0.0000268    0.0000000     18.629   158.371    EM
+    17 -0.25477727D+04    0.0000067    0.0000000     18.626   158.374    EM
+    18 -0.25477727D+04    0.0000017    0.0000000     18.625   158.375    EM
+    19 -0.25477727D+04    0.0000004    0.0000000     18.624   158.376    EM
+    20 -0.25477727D+04    0.0000001    0.0000000     18.624   158.376    EM
+    21 -0.25477727D+04    0.0000000    0.0000000     18.624   158.376    EM
+    22 -0.25477727D+04    0.0000000    0.0000000     18.624   158.376    EM
+    23 -0.25477727D+04    0.0000000    0.0000000     18.624   158.376    EM
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated values, residuals)
+  Scatterplots (sample values, estimated values, residuals)
+  Sample means
+  Estimated means, medians, modes, and percentiles
+  Sample and estimated means
+  Adjusted estimated means
+  Observed individual values
+  Estimated individual values
+  Estimated means and observed individual values
+  Estimated means and estimated individual values
+  Adjusted estimated means and observed individual values
+  Adjusted estimated means and estimated individual values
+  Estimated overall and class-specific distributions
+  Estimated probabilities for a categorical latent variable as a
+    function of its covariates
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    class_2c.txt
+
+  Order and format of variables
+
+    DURATION       F10.3
+    TIMING         F10.3
+    QUALITY        F10.3
+    ALERT          F10.3
+    EFFICIEN       F10.3
+    REGULAR        F10.3
+    SEX            F10.3
+    AGE            F10.3
+    CPROB1         F10.3
+    CPROB2         F10.3
+    C              F10.3
+    ID             I4
+
+  Save file format
+    11F10.3 I4
+
+  Save file record length    10000
+
+
+     Beginning Time:  13:42:54
+        Ending Time:  13:42:55
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2018 Muthen & Muthen
