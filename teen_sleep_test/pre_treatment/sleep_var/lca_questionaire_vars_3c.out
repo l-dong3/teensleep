@@ -1,0 +1,423 @@
+Mplus VERSION 8.1
+MUTHEN & MUTHEN
+06/11/2018  10:50 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE: TEEN SLEEP SLEEP DIARY PRE-TREATMENT
+  LATENT CLASS ANALYSIS
+
+  DATA:
+  FILE = sleep_var_pretx.csv;
+
+  VARIABLE:
+  NAMES = ID Tx age_yr_0 sex_0 timepoint WD_TSTavg_
+          WD_Bedtimeavg_ TST_Avgdif_ Bedtime_Avgdif_
+          WakeTime_Avgdif_ SLEEPINESS_ PSQITOT_
+          CBCL_SLEEP_ CMEP_;
+  USEV = SLEEPINESS_ PSQITOT_ CBCL_SLEEP_ CMEP_ ;
+  CLASSES = c(3);
+  MISSING = ALL (-999);
+
+  ANALYSIS:
+  TYPE = MIXTURE;
+  STARTS = 100 10;
+
+  !MODEL:
+  !%OVERALL%
+
+  !%c#1%
+
+  !%c#2%
+
+  !%c#3%
+
+  OUTPUT:
+  TECH11;
+
+  PLOT:
+  TYPE = PLOT3;
+  SERIES = SLEEPINESS_ PSQITOT_
+          CBCL_SLEEP_ CMEP_(*);
+
+  SAVEDATA:
+      FILE = LCA_3_classes_question_var.txt ;
+      SAVE = cprob;
+      FORMAT = free;
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in MODEL command
+  All variables are uncorrelated with all other variables within class.
+  Check that this is what is intended.
+*** WARNING in PLOT command
+  Note that only the first 8 characters of variable names are used in plots.
+  If variable names are not unique within the first 8 characters, problems
+  may occur.
+   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+TEEN SLEEP SLEEP DIARY PRE-TREATMENT
+LATENT CLASS ANALYSIS
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         176
+
+Number of dependent variables                                    4
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Continuous
+   SLEEPINESS  PSQITOT_    CBCL_SLEEP  CMEP_
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                        100
+  Number of final stage optimizations                           10
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+
+Input data file(s)
+  sleep_var_pretx.csv
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             6
+     Number of y missing data patterns           6
+     Number of u missing data patterns           0
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              SLEEPINE      PSQITOT_      CBCL_SLE      CMEP_
+              ________      ________      ________      ________
+ SLEEPINE       0.977
+ PSQITOT_       0.932         0.932
+ CBCL_SLE       0.955         0.915         0.977
+ CMEP_          0.972         0.926         0.977         0.994
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SLEEPINESS_           6.174       0.396       0.000   11.63%       2.000      5.000      6.000
+             172.000      18.051      -0.506      19.000    0.58%       7.000     10.000
+     PSQITOT_              7.579       0.528       2.000    1.22%       5.000      6.000      7.000
+             164.000       8.939      -0.047      18.000    0.61%       8.000     10.000
+     CBCL_SLEEP_           3.279       0.516       0.000    8.14%       1.000      3.000      3.000
+             172.000       4.259      -0.147       9.000    1.16%       3.000      5.000
+     CMEP_                21.303      -0.401      10.000    0.57%      18.000     20.000     21.000
+             175.000      14.405      -0.628      27.000    6.86%      23.000     25.000
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -1731.060  341041           34
+           -1731.060  227563           63
+           -1731.060  576596           99
+           -1731.060  903420           5
+           -1731.060  285380           1
+           -1731.060  723775           97
+           -1731.060  366706           29
+           -1731.060  992389           77
+           -1731.338  754100           56
+           -1731.338  76974            16
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       18
+
+Loglikelihood
+
+          H0 Value                       -1731.060
+          H0 Scaling Correction Factor      1.2589
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    3498.120
+          Bayesian (BIC)                  3555.189
+          Sample-Size Adjusted BIC        3498.187
+            (n* = (n + 2) / 24)
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1         27.87510          0.15838
+       2        114.45661          0.65032
+       3         33.66829          0.19130
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1         27.87510          0.15838
+       2        114.45661          0.65032
+       3         33.66829          0.19130
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1               22          0.12500
+       2              124          0.70455
+       3               30          0.17045
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.683
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2        3
+
+    1   0.816    0.138    0.047
+    2   0.072    0.870    0.059
+    3   0.035    0.119    0.846
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2        3
+
+    1   0.644    0.319    0.037
+    2   0.026    0.942    0.031
+    3   0.030    0.216    0.754
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2        3
+
+    1      2.846    2.142    0.000
+    2     -0.167    3.407    0.000
+    3     -3.210   -1.251    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ Means
+    SLEEPINESS         2.997      0.720      4.164      0.000
+    PSQITOT_           5.780      0.884      6.542      0.000
+    CBCL_SLEEP         5.689      0.781      7.286      0.000
+    CMEP_             21.167      1.848     11.456      0.000
+
+ Variances
+    SLEEPINESS        13.146      2.677      4.911      0.000
+    PSQITOT_           5.661      1.403      4.033      0.000
+    CBCL_SLEEP         2.408      0.588      4.095      0.000
+    CMEP_             13.497      1.296     10.414      0.000
+
+Latent Class 2
+
+ Means
+    SLEEPINESS         5.755      0.842      6.837      0.000
+    PSQITOT_           6.933      0.571     12.145      0.000
+    CBCL_SLEEP         2.313      0.211     10.970      0.000
+    CMEP_             21.892      0.466     47.014      0.000
+
+ Variances
+    SLEEPINESS        13.146      2.677      4.911      0.000
+    PSQITOT_           5.661      1.403      4.033      0.000
+    CBCL_SLEEP         2.408      0.588      4.095      0.000
+    CMEP_             13.497      1.296     10.414      0.000
+
+Latent Class 3
+
+ Means
+    SLEEPINESS        10.221      1.566      6.526      0.000
+    PSQITOT_          11.142      0.679     16.414      0.000
+    CBCL_SLEEP         4.583      1.083      4.233      0.000
+    CMEP_             19.422      1.223     15.886      0.000
+
+ Variances
+    SLEEPINESS        13.146      2.677      4.911      0.000
+    PSQITOT_           5.661      1.403      4.033      0.000
+    CBCL_SLEEP         2.408      0.588      4.095      0.000
+    CMEP_             13.497      1.296     10.414      0.000
+
+Categorical Latent Variables
+
+ Means
+    C#1               -0.189      0.671     -0.281      0.779
+    C#2                1.224      0.577      2.120      0.034
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.106E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 11 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 100
+        Number of final stage optimizations                    10
+
+
+
+     VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 2 (H0) VERSUS 3 CLASSES
+
+          H0 Loglikelihood Value                        -1736.917
+          2 Times the Loglikelihood Difference             11.714
+          Difference in the Number of Parameters                5
+          Mean                                             20.257
+          Standard Deviation                               29.043
+          P-Value                                          0.5657
+
+     LO-MENDELL-RUBIN ADJUSTED LRT TEST
+
+          Value                                            11.278
+          P-Value                                          0.5751
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values)
+  Scatterplots (sample values)
+  Sample means
+  Estimated means, medians, modes, and percentiles
+  Sample and estimated means
+  Observed individual values
+  Estimated means and observed individual values
+  Estimated overall and class-specific distributions
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    LCA_3_classes_question_var.txt
+
+  Order of variables
+
+    SLEEPINE
+    PSQITOT_
+    CBCL_SLE
+    CMEP_
+    CPROB1
+    CPROB2
+    CPROB3
+    C
+
+  Save file format           Free
+
+  Save file record length    10000
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Mixture analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  22:50:33
+        Ending Time:  22:50:36
+       Elapsed Time:  00:00:03
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2018 Muthen & Muthen

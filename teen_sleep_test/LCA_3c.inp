@@ -1,0 +1,43 @@
+TITLE: TEEN SLEEP SLEEP DIARY PRE-TREATMENT
+LATENT CLASS ANALYSIS
+
+DATA:
+FILE = SD_var_pre.csv;
+
+VARIABLE: 
+NAMES = ID Tx WD_Bedtimeavg0 Bedtime_Avgdif0 
+        WD_WakeTimeavg0 WakeTime_Avgdif0 WD_RiseTimeavg0 
+        RiseTime_Avgdif0 WD_TSTavg0 TST_Avgdif0;
+USEV = WD_Bedtimeavg0 Bedtime_Avgdif0 
+       WakeTime_Avgdif0 WD_TSTavg0 TST_Avgdif0;
+CLASSES = c(3); 
+MISSING = ALL (-999);
+
+ANALYSIS: 
+TYPE = MIXTURE; 
+STARTS = 100 10; 
+
+MODEL: 
+%OVERALL%
+
+
+%c#1%
+
+
+%c#2%
+
+
+%c#3%
+
+OUTPUT:
+TECH11; 
+
+PLOT:
+TYPE = PLOT3;
+SERIES = WD_Bedtimeavg0 Bedtime_Avgdif0 
+         WakeTime_Avgdif0 WD_TSTavg0 TST_Avgdif0(*);
+
+SAVEDATA:  
+    FILE = LCA_3_classes.txt ;
+    SAVE = cprob;
+    FORMAT = free;

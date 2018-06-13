@@ -1,0 +1,440 @@
+Mplus VERSION 8.1
+MUTHEN & MUTHEN
+06/11/2018  10:58 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE: TEEN SLEEP SLEEP DIARY PRE-TREATMENT
+  LATENT CLASS ANALYSIS
+
+  DATA:
+  FILE = SD_var_pre.csv;
+
+  VARIABLE:
+  NAMES = ID Tx WD_Bedtimeavg0 Bedtime_Avgdif0
+          WD_WakeTimeavg0 WakeTime_Avgdif0 WD_RiseTimeavg0
+          RiseTime_Avgdif0 WD_TSTavg0 TST_Avgdif0;
+  USEV = WD_Bedtimeavg0 Bedtime_Avgdif0
+         WakeTime_Avgdif0 WD_TSTavg0 TST_Avgdif0;
+  CLASSES = c(3);
+  MISSING = ALL (-999);
+
+  ANALYSIS:
+  TYPE = MIXTURE;
+  STARTS = 100 10;
+
+  MODEL:
+  %OVERALL%
+
+
+  %c#1%
+
+
+  %c#2%
+
+
+  %c#3%
+
+  OUTPUT:
+  TECH11;
+
+  PLOT:
+  TYPE = PLOT3;
+  SERIES = WD_Bedtimeavg0 Bedtime_Avgdif0
+           WakeTime_Avgdif0 WD_TSTavg0 TST_Avgdif0(*);
+
+  SAVEDATA:
+      FILE = LCA_3_classes.txt ;
+      SAVE = cprob;
+      FORMAT = free;
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in MODEL command
+  All variables are uncorrelated with all other variables within class.
+  Check that this is what is intended.
+*** WARNING in PLOT command
+  Note that only the first 8 characters of variable names are used in plots.
+  If variable names are not unique within the first 8 characters, problems
+  may occur.
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  14
+   4 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+TEEN SLEEP SLEEP DIARY PRE-TREATMENT
+LATENT CLASS ANALYSIS
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         167
+
+Number of dependent variables                                    5
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Continuous
+   WD_BEDTIME  BEDTIME_AV  WAKETIME_A  WD_TSTAVG0  TST_AVGDIF
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                        100
+  Number of final stage optimizations                           10
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+
+Input data file(s)
+  SD_var_pre.csv
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             3
+     Number of y missing data patterns           3
+     Number of u missing data patterns           0
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              WD_BEDTI      BEDTIME_      WAKETIME      WD_TSTAV      TST_AVGD
+              ________      ________      ________      ________      ________
+ WD_BEDTI       1.000
+ BEDTIME_       0.970         0.970
+ WAKETIME       0.964         0.964         0.964
+ WD_TSTAV       1.000         0.970         0.964         1.000
+ TST_AVGD       0.964         0.964         0.964         0.964         0.964
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     WD_BEDTIMEAVG0       22.939       0.429      20.600    0.60%      22.000     22.521     22.883
+             167.000       1.121       0.044      26.200    0.60%      23.100     23.867
+     BEDTIME_AVGDIF0      -0.674      -0.846      -6.600    0.62%      -1.350     -0.800     -0.600
+             162.000       1.406       4.578       3.867    0.62%      -0.400      0.217
+     WAKETIME_AVGDIF      -1.657      -0.210      -5.283    0.62%      -2.700     -1.883     -1.600
+             161.000       1.766       0.351       1.867    0.62%      -1.317     -0.647
+     WD_TSTAVG0          456.476      -0.199     296.000    0.60%     403.833    445.000    461.429
+             167.000    3967.886      -0.273     601.000    0.60%     475.000    509.000
+     TST_AVGDIF0         -60.220       0.388    -439.000    0.62%    -128.200    -86.000    -64.500
+             161.000   10308.219       4.049     448.000    0.62%     -36.667      9.000
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -2599.417  391179           78
+           -2599.417  462953           7
+           -2599.417  915107           54
+           -2599.417  569131           26
+           -2599.417  unperturbed      0
+           -2599.417  364676           27
+           -2599.417  789985           67
+           -2599.417  370466           41
+           -2599.798  851945           18
+           -2599.798  570908           98
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       22
+
+Loglikelihood
+
+          H0 Value                       -2599.417
+          H0 Scaling Correction Factor      1.7837
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    5242.835
+          Bayesian (BIC)                  5311.430
+          Sample-Size Adjusted BIC        5241.775
+            (n* = (n + 2) / 24)
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1         19.85252          0.11888
+       2        129.19427          0.77362
+       3         17.95321          0.10750
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1         19.85252          0.11888
+       2        129.19427          0.77362
+       3         17.95321          0.10750
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1               19          0.11377
+       2              132          0.79042
+       3               16          0.09581
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.858
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2        3
+
+    1   0.856    0.144    0.000
+    2   0.027    0.948    0.025
+    3   0.000    0.081    0.919
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2        3
+
+    1   0.819    0.181    0.000
+    2   0.021    0.969    0.010
+    3   0.000    0.181    0.819
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2        3
+
+    1      9.659    8.149    0.000
+    2      0.750    4.572    0.000
+    3    -13.616   -1.510    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ Means
+    WD_BEDTIME        23.690      0.598     39.608      0.000
+    BEDTIME_AV        -0.084      0.451     -0.186      0.852
+    WAKETIME_A        -3.777      0.643     -5.878      0.000
+    WD_TSTAVG0       414.520     22.342     18.553      0.000
+    TST_AVGDIF      -219.761     62.640     -3.508      0.000
+
+ Variances
+    WD_BEDTIME         0.911      0.121      7.522      0.000
+    BEDTIME_AV         1.230      0.209      5.887      0.000
+    WAKETIME_A         0.921      0.191      4.828      0.000
+    WD_TSTAVG0      3057.544    395.317      7.734      0.000
+    TST_AVGDIF      4486.220    981.126      4.573      0.000
+
+Latent Class 2
+
+ Means
+    WD_BEDTIME        22.983      0.133    172.457      0.000
+    BEDTIME_AV        -0.617      0.106     -5.827      0.000
+    WAKETIME_A        -1.555      0.244     -6.372      0.000
+    WD_TSTAVG0       451.835      9.489     47.617      0.000
+    TST_AVGDIF       -57.175     15.885     -3.599      0.000
+
+ Variances
+    WD_BEDTIME         0.911      0.121      7.522      0.000
+    BEDTIME_AV         1.230      0.209      5.887      0.000
+    WAKETIME_A         0.921      0.191      4.828      0.000
+    WD_TSTAVG0      3057.544    395.317      7.734      0.000
+    TST_AVGDIF      4486.220    981.126      4.573      0.000
+
+Latent Class 3
+
+ Means
+    WD_BEDTIME        21.795      0.191    114.115      0.000
+    BEDTIME_AV        -1.819      0.929     -1.959      0.050
+    WAKETIME_A         0.060      0.523      0.115      0.908
+    WD_TSTAVG0       536.266     15.841     33.852      0.000
+    TST_AVGDIF       105.070     74.980      1.401      0.161
+
+ Variances
+    WD_BEDTIME         0.911      0.121      7.522      0.000
+    BEDTIME_AV         1.230      0.209      5.887      0.000
+    WAKETIME_A         0.921      0.191      4.828      0.000
+    WD_TSTAVG0      3057.544    395.317      7.734      0.000
+    TST_AVGDIF      4486.220    981.126      4.573      0.000
+
+Categorical Latent Variables
+
+ Means
+    C#1                0.101      1.235      0.081      0.935
+    C#2                1.974      0.689      2.865      0.004
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.650E-05
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 11 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 100
+        Number of final stage optimizations                    10
+
+
+
+     VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 2 (H0) VERSUS 3 CLASSES
+
+          H0 Loglikelihood Value                        -2627.459
+          2 Times the Loglikelihood Difference             56.084
+          Difference in the Number of Parameters                6
+          Mean                                            121.148
+          Standard Deviation                              229.019
+          P-Value                                          0.5546
+
+     LO-MENDELL-RUBIN ADJUSTED LRT TEST
+
+          Value                                            54.315
+          P-Value                                          0.5600
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values)
+  Scatterplots (sample values)
+  Sample means
+  Estimated means, medians, modes, and percentiles
+  Sample and estimated means
+  Observed individual values
+  Estimated means and observed individual values
+  Estimated overall and class-specific distributions
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    LCA_3_classes.txt
+
+  Order of variables
+
+    WD_BEDTI
+    BEDTIME_
+    WAKETIME
+    WD_TSTAV
+    TST_AVGD
+    CPROB1
+    CPROB2
+    CPROB3
+    C
+
+  Save file format           Free
+
+  Save file record length    10000
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Mixture analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  22:58:52
+        Ending Time:  22:58:57
+       Elapsed Time:  00:00:05
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2018 Muthen & Muthen
