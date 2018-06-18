@@ -1,0 +1,239 @@
+TranSC vs. Time vs. Age 3 way interaction is significant for CMEP
+*the slope associated with age varies as a function of the interaction of Treatment and Time. 
+
+
+*computing age slopes separately for each combination of time point and treatment condition
+
+. margins, dydx(age) over(time Tx)
+
+Average marginal effects                        Number of obs     =        462
+
+Expression   : Linear prediction, fixed portion, predict()
+dy/dx w.r.t. : age_yr_0
+over         : timepoint Tx
+
+-------------------------------------------------------------------------------
+              |            Delta-method
+              |      dy/dx   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+age_yr_0      |
+ timepoint#Tx |
+      PRE#PE  |   .2630906   .0616856     4.27   0.000      .142189    .3839922
+ PRE#TranS-C  |   .1798437   .0559221     3.22   0.001     .0702383    .2894491
+     POST#PE  |   .2972834   .0638245     4.66   0.000     .1721896    .4223772
+POST#TranS-C  |   .0850745   .0571474     1.49   0.137    -.0269324    .1970814
+      FU6#PE  |    .187012   .0659033     2.84   0.005     .0578438    .3161801
+ FU6#TranS-C  |   .3130052   .0576448     5.43   0.000     .2000235     .425987
+-------------------------------------------------------------------------------
+
+*the 3-way interaction was significant
+. contrast Tx#time#c.age_yr_0
+
+Contrasts of marginal linear predictions
+
+Margins      : asbalanced
+
+-----------------------------------------------------------
+                        |         df        chi2     P>chi2
+------------------------+----------------------------------
+WD_Bedtimeavg_          |
+Tx#timepoint#c.age_yr_0 |          2       15.19     0.0005
+-----------------------------------------------------------
+
+. margins, dydx(age) over(time Tx)
+
+Average marginal effects                        Number of obs     =        462
+
+Expression   : Linear prediction, fixed portion, predict()
+dy/dx w.r.t. : age_yr_0
+over         : timepoint Tx
+
+-------------------------------------------------------------------------------
+              |            Delta-method
+              |      dy/dx   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+age_yr_0      |
+ timepoint#Tx |
+      PRE#PE  |   .2630906   .0616856     4.27   0.000      .142189    .3839922
+ PRE#TranS-C  |   .1798437   .0559221     3.22   0.001     .0702383    .2894491
+     POST#PE  |   .2972834   .0638245     4.66   0.000     .1721896    .4223772
+POST#TranS-C  |   .0850745   .0571474     1.49   0.137    -.0269324    .1970814
+      FU6#PE  |    .187012   .0659033     2.84   0.005     .0578438    .3161801
+ FU6#TranS-C  |   .3130052   .0576448     5.43   0.000     .2000235     .425987
+-------------------------------------------------------------------------------
+
+.
+
+*the comparison of age slope for TranS-C versus PE was significant at post, but not at pre or 6mFU. 
+. contrast Tx#c.age_yr_0@time,  pveffects
+
+Contrasts of marginal linear predictions
+
+Margins      : asbalanced
+
+-----------------------------------------------------------
+                        |         df        chi2     P>chi2
+------------------------+----------------------------------
+WD_Bedtimeavg_          |
+Tx@timepoint#c.age_yr_0 |
+                   PRE  |          1        1.00     0.3174
+                  POST  |          1        6.15     0.0132
+                   FU6  |          1        2.07     0.1499
+                 Joint  |          3       16.02     0.0011
+-----------------------------------------------------------
+
+----------------------------------------------------------------
+                        |   Contrast   Std. Err.      z    P>|z|
+------------------------+---------------------------------------
+WD_Bedtimeavg_          |
+Tx@timepoint#c.age_yr_0 |
+ (TranS-C vs base) PRE  |  -.0832469    .083264    -1.00   0.317
+(TranS-C vs base) POST  |   -.212209   .0855997    -2.48   0.013
+ (TranS-C vs base) FU6  |   .1259933   .0875046     1.44   0.150
+----------------------------------------------------------------
+
+Below are two tests comparing the age slope across the three time points for PE (p = 0.24) and TranS (p = 0.0003). The age slope significantly differs as a function of time point for TranS-C but not for PE condition. 
+
+. contrast time#c.age@Tx
+
+Contrasts of marginal linear predictions
+
+Margins      : asbalanced
+
+-----------------------------------------------------------
+                        |         df        chi2     P>chi2
+------------------------+----------------------------------
+WD_Bedtimeavg_          |
+timepoint@Tx#c.age_yr_0 |
+                    PE  |          2        2.88     0.2366
+               TranS-C  |          2       16.06     0.0003
+                 Joint  |          4       18.95     0.0008
+-----------------------------------------------------------
+
+For the below: the age slope for TranS-C 
+. contrast ar.time#c.age@Tx, pveffects
+
+Contrasts of marginal linear predictions
+
+Margins      : asbalanced
+
+-----------------------------------------------------------
+                        |         df        chi2     P>chi2
+------------------------+----------------------------------
+WD_Bedtimeavg_          |
+timepoint@Tx#c.age_yr_0 |
+      (POST vs PRE) PE  |          1        0.28     0.5941
+ (POST vs PRE) TranS-C  |          1        2.84     0.0922
+      (FU6 vs POST) PE  |          1        2.78     0.0952
+ (FU6 vs POST) TranS-C  |          1       15.94     0.0001
+                 Joint  |          4       18.95     0.0008
+-----------------------------------------------------------
+
+----------------------------------------------------------------
+                        |   Contrast   Std. Err.      z    P>|z|
+------------------------+---------------------------------------
+WD_Bedtimeavg_          |
+timepoint@Tx#c.age_yr_0 |
+      (POST vs PRE) PE  |   .0341928   .0641623     0.53   0.594
+ (POST vs PRE) TranS-C  |  -.0947692   .0562825    -1.68   0.092
+      (FU6 vs POST) PE  |  -.1102715   .0660829    -1.67   0.095
+ (FU6 vs POST) TranS-C  |   .2279308   .0570865     3.99   0.000
+----------------------------------------------------------------
+
+.
+
+
+*Simple contrasts on timepoint for the age slope
+**ar contrast operator is used to form reverse adjacent group comparisons
+**The difference in age slopes between FU6 versus POST for TranS-C is significant (0.23 or almost 15 min later in terms of bedtime associated with 1 year increase in age???) how to interpret this?
+
+. contrast ar.time#c.age@Tx, pveffects
+
+Contrasts of marginal linear predictions
+
+Margins      : asbalanced
+
+-----------------------------------------------------------
+                        |         df        chi2     P>chi2
+------------------------+----------------------------------
+WD_Bedtimeavg_          |
+timepoint@Tx#c.age_yr_0 |
+      (POST vs PRE) PE  |          1        0.28     0.5941
+ (POST vs PRE) TranS-C  |          1        2.84     0.0922
+      (FU6 vs POST) PE  |          1        2.78     0.0952
+ (FU6 vs POST) TranS-C  |          1       15.94     0.0001
+                 Joint  |          4       18.95     0.0008
+-----------------------------------------------------------
+
+----------------------------------------------------------------
+                        |   Contrast   Std. Err.      z    P>|z|
+------------------------+---------------------------------------
+WD_Bedtimeavg_          |
+timepoint@Tx#c.age_yr_0 |
+      (POST vs PRE) PE  |   .0341928   .0641623     0.53   0.594
+ (POST vs PRE) TranS-C  |  -.0947692   .0562825    -1.68   0.092
+      (FU6 vs POST) PE  |  -.1102715   .0660829    -1.67   0.095
+ (FU6 vs POST) TranS-C  |   .2279308   .0570865     3.99   0.000
+----------------------------------------------------------------
+
+**the difference in age slopes between TranS-C versus PE at POST was significant and the difference is -0.21
+
+. contrast ar.Tx#c.age@timepoint, pveffects
+
+Contrasts of marginal linear predictions
+
+Margins      : asbalanced
+
+-----------------------------------------------------------
+                        |         df        chi2     P>chi2
+------------------------+----------------------------------
+WD_Bedtimeavg_          |
+Tx@timepoint#c.age_yr_0 |
+   (TranS-C vs PE) PRE  |          1        1.00     0.3174
+  (TranS-C vs PE) POST  |          1        6.15     0.0132
+   (TranS-C vs PE) FU6  |          1        2.07     0.1499
+                 Joint  |          3       16.02     0.0011
+-----------------------------------------------------------
+
+----------------------------------------------------------------
+                        |   Contrast   Std. Err.      z    P>|z|
+------------------------+---------------------------------------
+WD_Bedtimeavg_          |
+Tx@timepoint#c.age_yr_0 |
+   (TranS-C vs PE) PRE  |  -.0832469    .083264    -1.00   0.317
+  (TranS-C vs PE) POST  |   -.212209   .0855997    -2.48   0.013
+   (TranS-C vs PE) FU6  |   .1259933   .0875046     1.44   0.150
+----------------------------------------------------------------
+
+
+*Partial interaction on timepoint for age slope
+
+. contrast ar.timepoint#r.Tx#c.age, pveffects
+
+Contrasts of marginal linear predictions
+
+Margins      : asbalanced
+
+------------------------------------------------------------------
+                               |         df        chi2     P>chi2
+-------------------------------+----------------------------------
+WD_Bedtimeavg_                 |
+       timepoint#Tx#c.age_yr_0 |
+(POST vs PRE) (TranS-C vs PE)  |          1        2.28     0.1308
+(FU6 vs POST) (TranS-C vs PE)  |          1       15.00     0.0001
+                        Joint  |          2       15.19     0.0005
+------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+                               |   Contrast   Std. Err.      z    P>|z|
+-------------------------------+---------------------------------------
+WD_Bedtimeavg_                 |
+       timepoint#Tx#c.age_yr_0 |
+(POST vs PRE) (TranS-C vs PE)  |  -.1289621   .0853479    -1.51   0.131
+(FU6 vs POST) (TranS-C vs PE)  |   .3382022   .0873258     3.87   0.000
+-----------------------------------------------------------------------
+
+The second comparison tests the interaction of the contrast of FU6 vs POST by treatment condition by age. 
+
+
+

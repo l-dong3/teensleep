@@ -1,0 +1,373 @@
+. use "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/ACS_FU6/ACS_RECODED_SCORED_FU6.dta"
+
+. use "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/ACS_FU6/ACS_SCORED_FU6.dta"
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/ACS_FU12/ACS_RECODED_SCORED_FU12.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            25
+        from master                        17  (_merge==1)
+        from using                          8  (_merge==2)
+
+    matched                               125  (_merge==3)
+    -----------------------------------------
+
+. sum ACS_score_FU6 ACS_SCORED_FU12
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+ACS_score_~6 |        142    51.96479    9.395496         31         74
+ACS_SCORE~12 |        133    50.47368    8.413174         31         76
+
+. keep ID ACS_score_FU6 ACS_SCORED_FU12
+
+. rename ACS_score_FU6 ACS_sum_FU6
+
+. rename ACS_SCORED_FU12 ACS_sum_FU12
+
+. 
+. save "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/primary_second_outcomes.dta"
+file /Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/primary_second_outcomes.dta saved
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/ASU_FU6/ASU_SCORED_FU6.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             8
+        from master                         8  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               142  (_merge==3)
+    -----------------------------------------
+
+. drop ASU_CAFFEINE_FU6-ASU_OTHER_SUBSTANCES
+
+. rename ASU_SUM_FU6 ASU_sum_FU6
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/ASU_FU12/ASU_SCORED_FU12.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            14
+        from master                        14  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               136  (_merge==3)
+    -----------------------------------------
+
+. keep ID ACS_sum_FU6 ACS_sum_FU12 ASU_sum_FU6 ASU_SUM_FU12
+
+. rename ASU_SUM_FU12 ASU_sum_FU12
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/CBCL_FU6/CBCL_PROFILES_FU6_sumscores.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            14
+        from master                        10  (_merge==1)
+        from using                          4  (_merge==2)
+
+    matched                               140  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/CBCL_FU12/CBCL_PROFILES_FU12_sumscores.dta
+> "
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            20
+        from master                        19  (_merge==1)
+        from using                          1  (_merge==2)
+
+    matched                               135  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/CDRS_FU6/CDRS_SCORED_FU6.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             7
+        from master                         3  (_merge==1)
+        from using                          4  (_merge==2)
+
+    matched                               152  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/CDRS_FU12/CDRS_SCORED_FU12.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            15
+        from master                        13  (_merge==1)
+        from using                          2  (_merge==2)
+
+    matched                               146  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. drop _merge
+variable _merge not found
+r(111);
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/CMEP_FU6/CMEP_SCORED_FU6.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            19
+        from master                        19  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               142  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/CMEP_FU12/CMEP_SCORED_FU12.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            24
+        from master                        24  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               137  (_merge==3)
+    -----------------------------------------
+
+. drop CMEP_0_1-CMEP_0_10
+
+. drop _merge
+
+. rename CMEP_SCORED_FU12 CMEP_FU12
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/MAQ_FU6/MAQ_FU6_SCORED.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            17
+        from master                         1  (_merge==1)
+        from using                         16  (_merge==2)
+
+    matched                               160  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/MAQ_FU12/MAQ_FU12_SCORED.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             1
+        from master                         1  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               176  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/MASC_FU6/MASC_SCORED_FU6.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            35
+        from master                        35  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               142  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/MASC_FU12/MASC_SCORED_FU12.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            42
+        from master                        42  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               135  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/PHQ15_FU6/PHQ15_SCORED_FU6.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            35
+        from master                        35  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               142  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. rename PHQ_SORE_FU16 PHQ_score_FU6
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/PHQ15_FU12/PHQ15_SCORED_FU12.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            41
+        from master                        41  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               136  (_merge==3)
+    -----------------------------------------
+
+. rename PHQ_SCORE_FU12 PHQ_sum_FU12
+
+. rename PHQ_score_FU6 PHQ_sum_FU6
+
+. label variable PHQ_sum_FU6 "PHQ sum FU6"
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/PSQI_FU6/PSQI_TotalScore_FU6.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            40
+        from master                        40  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               137  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/PSQI_FU12/PSQI_TotalScore_FU12.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            38
+        from master                        38  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               139  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/SAS_FU6/SAS_SCORED_FU6.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            36
+        from master                        36  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               141  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/SAS_FU12/SAS_SCORED_FU12.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            39
+        from master                        39  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               138  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/SLEEP_DIARIES_FU6/SD_INDECES_FU6_outcome.d
+> ta"
+variable ID does not uniquely identify observations in the using data
+r(459);
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/SLEEP_DIARIES_FU12/SD_INDECES_FU12_outcome
+> .dta"
+variable ID does not uniquely identify observations in the using data
+r(459);
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/SSHB_FU6/SSHB_SLEEPINESS_SCORED_FU6.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            35
+        from master                        35  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               142  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/SSHB_FU12/SSHB_SLEEPINESS_SCORED_FU12.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            38
+        from master                        38  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               139  (_merge==3)
+    -----------------------------------------
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/SSS_FU6/SSS_RECODEDSCORED_FU6.dta"
+variable _merge already defined
+r(110);
+
+. drop _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/SSS_FU6/SSS_RECODEDSCORED_FU6.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            35
+        from master                        35  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               142  (_merge==3)
+    -----------------------------------------
+
+. drop SSS_6_1-SSS_6_8 _merge
+
+. merge 1:1 ID using "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/SSS_FU12/SSS_RECODEDSCORED_FU12.dta"
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            41
+        from master                        41  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               136  (_merge==3)
+    -----------------------------------------
+
+. drop SSS_12_1-SSS_12_8 _merge
+
+. drop CBCL*
+
+. order CDRS_P_FU6-CDRS_BEST_FU12, after(ID)
+
+. order MASC_SCORE_FU6 MASC_SCORE_FU12, after (CDRS_BEST_FU12)
+
+. order YSAS_COG_FU6-YSAS_SOCFU12, after (ACS_sum_FU12)
+
+. order SSS_SCORED_FU6 SSS_SCORE_FU12, after (ASU_sum_FU12)
+
+. order TotalYearLeisureActivityhr_FU6-PHQ_sum_FU12, after (SSS_SCORE_FU12)
+
+. order gender age, after (ID)
+
+. save "/Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/primary_second_outcomes.dta", replace
+file /Users/ldong/Dropbox/Harvey_lab_research/TEEN_SLEEP/TeenSleep_analysis/Teen_sleep_follow_up/Lulu_FUS_DATA09132017/primary_second_outcomes.dta saved
+
+. 

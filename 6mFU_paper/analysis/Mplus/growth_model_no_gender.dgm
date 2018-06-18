@@ -1,0 +1,58 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+ this is an example of a linear growth
+model for a continuous outcome at four
+time points with the intercept and slope
+growth factors regressed on two timeinvariant
+covariates
+
+DATA:
+ FILE IS CMEP.csv;
+VARIABLE:
+          NAMES ARE ID CMEP0 CMEP1 CMEP2 Tx age_yr_0 sex_0;
+          USEVAR ARE CMEP0 CMEP1 CMEP2 Tx age_yr_0 ;
+          MISSING = ALL (-999);
+OUTPUT:
+TECH1 TECH2;
+MODINDICES;
+MODEL:
+ i s | CMEP0@0 CMEP1@1 CMEP2@2 ;
+       i s ON Tx age_yr_0 ;
+       CMEP2@0;
+INPUT_END
+2
+0
+0
+0
+ML
+1
+GENERAL
+0
+3
+2
+2
+cmep0 cmep1 cmep2 i s tx age_yr_0
+2
+-1 -1 -1 1 1 0 0
+1
+i s
+cmep0 cmep1 cmep2
+0
+1 1 i cmep0    1.000    0.000
+1 1 i cmep1    1.000    0.000
+1 1 i cmep2    1.000    0.000
+1 1 s cmep0    0.000    0.000
+1 1 s cmep1    1.000    0.000
+1 1 s cmep2    2.000    0.000
+1 1 tx i   -0.152    0.556
+1 1 age_yr_0 i   -0.424    0.151
+1 1 tx s    0.838    0.336
+1 1 age_yr_0 s    0.176    0.093
+2 1 s i    1.057    1.029
+4 1 cmep0    7.776    2.116
+4 1 cmep1   11.213    1.431
+4 1 cmep2    0.000    0.000
+4 1 i    6.536    2.091
+4 1 s    2.407    0.653
+2 1 tx age_yr_0  999.000  999.000
